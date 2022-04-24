@@ -1,4 +1,4 @@
-frida (15.1.17-1~pirogue1) bullseye; urgency=medium
+frida (15.1.17~pirogue1) bullseye; urgency=medium
 
   * Initial, minimal packaging for the PiRogue (based on bullseye), see
     <https://github.com/PiRogueToolSuite/deb-python> for more information.
