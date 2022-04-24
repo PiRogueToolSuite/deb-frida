@@ -1,0 +1,21 @@
+Source: frida
+Section: python
+Priority: optional
+Maintainer: Cyril Brulebois <cyril@debamax.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ python3-all,
+ curl,
+ git,
+ npm,
+Standards-Version: 4.2.0
+Homepage: https://frida.re/
+
+Package: frida
+Architecture: arm64 armhf
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Description: dynamic instrumentation toolkit for reverse-engineering
+ FIXME: Long description.

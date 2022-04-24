@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: frida
+Upstream-Contact: Ole André V. Ravnås
+Source: https://github.com/frida/frida
+
+Files: *
+Copyright: Julian Smart, Robert Roebling et al
+License: wxWindows Library Licence, Version 3.1
+
+Files: debian/*
+Copyright: 2022 © Cyril Brulebois <cyril@debamax.com>
+License: wxWindows Library Licence, Version 3.1
