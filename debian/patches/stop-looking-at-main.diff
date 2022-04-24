@@ -1,0 +1,24 @@
+One might be working in a branch that's not main, in which case using
+main in target dependencies is a bit pointless. Checking what .git/HEAD
+points to would be more robust but might require special care (e.g. for
+detached HEAD).
+
+For now, let's assume people caring about the Debian packaging are going
+to perform a full, clean build, and won't get offended if the header is
+not getting updated when they don't.
+
+If the repository doesn't contain a main branch at all, the build would
+break this way:
+
+    make[3]: *** No rule to make target '.git/refs/heads/main', needed by 'build/frida-version.h'.  Stop.
+--- a/releng/frida.mk
++++ b/releng/frida.mk
+@@ -68,7 +68,7 @@ build/frida_gir-env-%.rc: releng/setup-e
+ 	[ ! -d toolchain-$* ] && ln -s frida_gir-toolchain-$* toolchain-$*; \
+ 	true
+ 
+-build/frida-version.h: releng/generate-version-header.py .git/refs/heads/main
++build/frida-version.h: releng/generate-version-header.py
+ 	@$(PYTHON3) releng/generate-version-header.py > $@.tmp
+ 	@mv $@.tmp $@
+ 
