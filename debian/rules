@@ -22,3 +22,6 @@ override_dh_auto_install:
 	cp -r $(DIR)/* debian/frida/usr
 	mkdir -p debian/frida/usr/lib/$(DEB_HOST_MULTIARCH)
 	mv debian/frida/usr/lib/pkgconfig debian/frida/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_python3:
+	dh_python3 --no-ext-rename
