@@ -16,5 +16,5 @@ override_dh_auto_build:
 	$(MAKE) $(TOOLS)
 
 override_dh_auto_install:
-	mkdir -p debian/tmp/usr
-	cp -r $(DIR)/* debian/tmp/usr
+	mkdir -p debian/frida/usr
+	cp -r $(DIR)/* debian/frida/usr
