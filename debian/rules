@@ -25,19 +25,9 @@ override_dh_auto_install:
 	mkdir -p debian/frida/usr/lib/$(DEB_HOST_MULTIARCH)
 	mv debian/frida/usr/lib/pkgconfig debian/frida/usr/lib/$(DEB_HOST_MULTIARCH)
 
-# This makes sure extensions can be easily loaded, but interferes with
-# the python3:Depends computing (min-max version); passing -V would give
-# different results, so hardcode what dh_python3 would compute without
-# the renaming:
 override_dh_python3:
 	dh_python3 --no-ext-rename
-	echo 'python3:hardcodedDepends=python3 (<< 3.10), python3 (>= 3.9~)' >> debian/frida.substvars
 
 override_dh_clean:
-	# Make sure hardcoded things get bumped when needed (post-bullseye):
-	if [ "$(shell py3versions -d)" != python3.9 ]; then \
-		echo "E: please update hardcoded python versions in the dh_python3 override"; \
-		exit 1; \
-	fi
 	$(MAKE) clean
 	dh_clean build/ .fakehome/
