@@ -18,7 +18,9 @@ Architecture: arm64 armhf
 Depends:
  ${misc:Depends},
  ${python3:Depends},
+ python3-colorama,
  python3-prompt-toolkit,
+ python3-pygments,
  ${shlibs:Depends},
 Description: dynamic instrumentation toolkit for reverse-engineering
  FIXME: Long description.
