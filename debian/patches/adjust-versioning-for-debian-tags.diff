@@ -1,0 +1,33 @@
+It's usually to be using a debian/ prefix to distinguish Debian tags
+from upstream tags. It's also possible to create several revisions
+for the same upstream tag, which are encoded as ~pirogue1, ~pirogue2,
+etc. in the changelog, but as _pirogue1, _pirogue2, etc. in git tags
+(since ~ is a reserved character).
+
+Therefore, drop the debian/ prefix as well as any ~pirogueN suffix
+before parsing version information.
+--- a/releng/generate-version-header.py
++++ b/releng/generate-version-header.py
+@@ -1,14 +1,21 @@
+ #!/usr/bin/env python3
+ 
+ import os
++import re
+ import subprocess
+ import sys
+ 
+ 
++def filter_debian_tag(version):
++    version = re.sub(r'^debian/', '', version)
++    version = re.sub(r'_pirogue\d+', '', version)
++    return version
++
++
+ def generate_version_header():
+     build_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+     description = subprocess.Popen(["git", "describe", "--tags", "--always", "--long"], cwd=build_dir, stdout=subprocess.PIPE).communicate()[0]
+-    version = description.strip().decode('utf-8').replace("-", ".")
++    version = filter_debian_tag(description.strip().decode('utf-8')).replace("-", ".")
+     (major, minor, micro, nano, commit) = version.split(".")
+     if nano == "0":
+         version = ".".join([major, minor, micro])
