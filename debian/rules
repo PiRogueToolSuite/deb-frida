@@ -2,9 +2,10 @@
 
 DEB_HOST_MULTIARCH := $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-# We only target arm64 and armhf; thankfully both frida and dpkg
-# agree on their name:
-FRIDA_ARCH := $(shell dpkg --print-architecture)
+# arm64 and armhf require a crossbuild (and names match between Debian
+# and the upstream build system); amd64 requires an explicit native
+# build (and names differ):
+FRIDA_ARCH := $(shell dpkg --print-architecture | sed 's/amd64/x86_64-thin/')
 PYTHON     := python-linux-$(FRIDA_ARCH)
 TOOLS      := tools-linux-$(FRIDA_ARCH)
 DIR        := build/frida_thin-linux-$(FRIDA_ARCH)

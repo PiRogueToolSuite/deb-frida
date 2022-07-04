@@ -1,3 +1,14 @@
+frida (15.1.17~pirogue2) UNRELEASED; urgency=medium
+
+  * Add support for amd64:
+     - control: add it to Architecture, alongside arm64 and armhf.
+     - rules: add a mapping between amd64 and the x86_64-thin set of
+       targets. The -thin part is required since otherwise Frida would try
+       and perform some crossbuild, getting its wires crossed between x86
+       and x86_64 anyway.
+
+ -- Cyril Brulebois <cyril@debamax.com>  Mon, 04 Jul 2022 17:30:40 +0200
+
 frida (15.1.17~pirogue1) bullseye; urgency=medium
 
   * Initial, minimal packaging for the PiRogue (based on bullseye), see
