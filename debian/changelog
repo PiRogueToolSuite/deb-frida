@@ -1,4 +1,4 @@
-frida (15.1.17~pirogue2) UNRELEASED; urgency=medium
+frida (15.1.17~pirogue2) bullseye; urgency=medium
 
   * Add support for amd64:
      - control: add it to Architecture, alongside arm64 and armhf.
@@ -8,7 +8,7 @@ frida (15.1.17~pirogue2) UNRELEASED; urgency=medium
        and x86_64 anyway. It only appears elsewhere in the build directory
        (in all cases) and needs to be stripped away.
 
- -- Cyril Brulebois <cyril@debamax.com>  Mon, 04 Jul 2022 17:30:40 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Mon, 04 Jul 2022 17:51:00 +0200
 
 frida (15.1.17~pirogue1) bullseye; urgency=medium
 
