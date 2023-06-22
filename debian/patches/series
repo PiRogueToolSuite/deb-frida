@@ -1,3 +1,2 @@
-fix-missing-module.diff
 stop-looking-at-main.diff
 adjust-versioning-for-debian-tags.diff
