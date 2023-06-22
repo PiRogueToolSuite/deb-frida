@@ -3,6 +3,8 @@ frida (16.0.19~pirogue1) UNRELEASED; urgency=medium
   * New upstream release.
   * Delete patch:
      - fix-missing-module.diff (no longer needed).
+  * Refresh patch:
+     - stop-looking-at-main.diff (context updated).
 
  -- Cyril Brulebois <cyril@debamax.com>  Fri, 23 Jun 2023 01:09:42 +0200
 
