@@ -6,6 +6,9 @@ frida (16.0.19~pirogue1) UNRELEASED; urgency=medium
   * Refresh patch:
      - stop-looking-at-main.diff (context updated).
      - adjust-versioning-for-debian-tags.diff (context updated).
+  * Add i386 support:
+     - control: add i386 to Architecture.
+     - rules: add i386 to x86-thin mapping.
 
  -- Cyril Brulebois <cyril@debamax.com>  Fri, 23 Jun 2023 01:09:42 +0200
 
