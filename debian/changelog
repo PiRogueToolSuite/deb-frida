@@ -1,4 +1,4 @@
-frida (16.0.19~pirogue1) UNRELEASED; urgency=medium
+frida (16.0.19~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Delete patch:
@@ -10,7 +10,7 @@ frida (16.0.19~pirogue1) UNRELEASED; urgency=medium
      - control: add i386 to Architecture.
      - rules: add i386 to x86-thin mapping.
 
- -- Cyril Brulebois <cyril@debamax.com>  Fri, 23 Jun 2023 01:09:42 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Sat, 24 Jun 2023 03:57:01 +0200
 
 frida (15.1.17~pirogue2) bullseye; urgency=medium
 
