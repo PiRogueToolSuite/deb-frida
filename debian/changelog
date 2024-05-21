@@ -1,4 +1,4 @@
-frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
+frida (16.2.5~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Delete patch:
@@ -22,7 +22,7 @@ frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
   * Delete dh_python3 override, no longer needed.
   * Delete variables that are no longer needed.
 
- -- Cyril Brulebois <cyril@debamax.com>  Tue, 21 May 2024 23:56:45 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Wed, 22 May 2024 00:01:10 +0200
 
 frida (16.1.11~pirogue1) bookworm; urgency=medium
 
