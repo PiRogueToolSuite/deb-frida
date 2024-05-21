@@ -8,21 +8,21 @@ Therefore, drop the debian/ prefix as well as any ~pirogueN suffix
 before parsing version information.
 --- a/releng/frida_version.py
 +++ b/releng/frida_version.py
-@@ -3,6 +3,7 @@
+@@ -4,6 +4,7 @@ import argparse
  from dataclasses import dataclass
  import os
  from pathlib import Path
 +import re
  import subprocess
+ import sys
  
+@@ -45,6 +46,9 @@ def detect(repo: Path) -> FridaVersion:
+                                      capture_output=True,
+                                      encoding="utf-8").stdout
  
-@@ -26,6 +27,9 @@ def detect() -> FridaVersion:
-                                  capture_output=True,
-                                  encoding="utf-8").stdout
- 
-+    description = re.sub(r'^debian/', '', description)
-+    description = re.sub(r'_pirogue\d+', '', description)
++        description = re.sub(r'^debian/', '', description)
++        description = re.sub(r'_pirogue\d+', '', description)
 +
-     tokens = description.strip().replace("-", ".").split(".")
-     if len(tokens) > 1:
-         (major, minor, micro, nano, commit) = tokens
+         tokens = description.strip().replace("-", ".").split(".")
+         if len(tokens) > 1:
+             (raw_major, raw_minor, raw_micro, raw_nano, commit) = tokens
