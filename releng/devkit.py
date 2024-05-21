@@ -285,6 +285,10 @@ def generate_library_windows(package, host, flavor, output_dir, library_filename
         sdk_lib_path("libnice.a", host),
     ]
 
+    lwip = [
+        sdk_lib_path("liblwip.a", host),
+    ]
+
     usrsctp = [
         sdk_lib_path("libusrsctp.a", host),
     ]
@@ -295,6 +299,11 @@ def generate_library_windows(package, host, flavor, output_dir, library_filename
 
     gee = glib + gobject + [
         sdk_lib_path("libgee-0.8.a", host),
+    ]
+
+    ngtcp2 = [
+        sdk_lib_path("libngtcp2.a", host),
+        sdk_lib_path("libngtcp2_crypto_quictls.a", host),
     ]
 
     nghttp2 = [
@@ -355,6 +364,8 @@ def generate_library_windows(package, host, flavor, output_dir, library_filename
                                   + gobject
                                   + gio
                                   + tls_provider
+                                  + ngtcp2
+                                  + lwip
                                   + nice
                                   + openssl
                                   + usrsctp
@@ -365,7 +376,8 @@ def generate_library_windows(package, host, flavor, output_dir, library_filename
                                   + gum
                                   + gumjs_inspector
                                   + libbrotlidec
-                                  + capstone)
+                                  + capstone
+                                  + quickjs)
     frida_core = [frida_core_lib] + frida_core_deps
 
     if package == "frida-gum-1.0":

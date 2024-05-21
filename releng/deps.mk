@@ -1,5 +1,5 @@
-frida_deps_version = 20230426
-frida_bootstrap_version = 20221210
+frida_deps_version = 20231124
+frida_bootstrap_version = 20231116
 
 
 frida_base_url = https://github.com/frida
@@ -123,7 +123,7 @@ selinux_deps_for_build = \
 	$(NULL)
 
 glib_name = GLib
-glib_version = f3af6c29d39eb7590425d1b22bae29ff6a0ebb6f
+glib_version = 638b2073275bf1fde72b02bf507ef66c1f79743b
 glib_url = $(frida_base_url)/glib.git
 glib_recipe = meson
 glib_patches = \
@@ -343,6 +343,29 @@ libnice_deps = \
 libnice_deps_for_build = \
 	$(NULL)
 
+lwip_name = lwip
+lwip_version = 0c1b36894deeece78eee522278c93483e92d5936
+lwip_url = $(frida_base_url)/lwip.git
+lwip_recipe = meson
+lwip_patches = \
+	$(NULL)
+lwip_options = \
+	-Dlwip_debug=disabled \
+	-Dipv4=disabled \
+	-Dipv6=enabled \
+	-Ddns=disabled \
+	-Darp=disabled \
+	-Dethernet=disabled \
+	-Dtcp_mss=1360 \
+	-Dtcp_snd_buf=65535 \
+	-Dtcp_wnd=65535 \
+	$(NULL)
+lwip_deps = \
+	glib \
+	$(NULL)
+lwip_deps_for_build = \
+	$(NULL)
+
 usrsctp_name = usrsctp
 usrsctp_version = 42627714785294aef2bb31851bdeef5db15f5802
 usrsctp_url = $(frida_base_url)/usrsctp.git
@@ -425,6 +448,20 @@ libxml2_deps = \
 libxml2_deps_for_build = \
 	$(NULL)
 
+ngtcp2_name = ngtcp2
+ngtcp2_version = 21a9ba1667985ad60e9acafc07af493555deaf53
+ngtcp2_url = $(frida_base_url)/ngtcp2.git
+ngtcp2_recipe = meson
+ngtcp2_patches = \
+	$(NULL)
+ngtcp2_options = \
+	$(NULL)
+ngtcp2_deps = \
+	openssl \
+	$(NULL)
+ngtcp2_deps_for_build = \
+	$(NULL)
+
 nghttp2_name = nghttp2
 nghttp2_version = ae13d24ea59c30e36ca53d1b22c4e664588d0445
 nghttp2_url = $(frida_base_url)/nghttp2.git
@@ -439,7 +476,7 @@ nghttp2_deps_for_build = \
 	$(NULL)
 
 libsoup_name = libsoup
-libsoup_version = 071bebc4a85357d11c8d4b9265dc8f723216a684
+libsoup_version = ecf0161ebfd752746a2f305ca1f506948853526e
 libsoup_url = $(frida_base_url)/libsoup.git
 libsoup_recipe = meson
 libsoup_patches = \
@@ -467,13 +504,14 @@ libsoup_deps_for_build = \
 	$(NULL)
 
 capstone_name = Capstone
-capstone_version = 22d317042ee4d251280d2960f5cf294433977db4
+capstone_version = 6ee04f102cbfb6f63c5401a4f346fff87448f97e
 capstone_url = $(frida_base_url)/capstone.git
 capstone_recipe = meson
 capstone_patches = \
 	$(NULL)
 capstone_options = \
-	-Darchs=$(capstone_archs) \
+	-Darchs=all \
+	-Duse_arch_registration=true \
 	-Dx86_att_disable=true \
 	-Dcli=disabled \
 	$(NULL)
@@ -481,14 +519,6 @@ capstone_deps = \
 	$(NULL)
 capstone_deps_for_build = \
 	$(NULL)
-capstone_archs := $(shell echo $(host_arch) | sed $(sed_regex_option) \
-		-e 's,^x86_64$$,x86,' \
-		-e 's,^arm[^0-9].+,arm,' \
-		-e 's,^arm64e$$,arm64,' \
-		-e 's,^arm64eoabi$$,arm64,' \
-		-e 's,^mips.*,mips,' \
-		-e 's,^s390x$$,sysz,' \
-	)
 
 quickjs_name = QuickJS
 quickjs_version = c81f05c9859cea5f83a80057416a0c7affe9b876
@@ -521,7 +551,7 @@ tinycc_deps_for_build = \
 	$(NULL)
 
 openssl_name = OpenSSL
-openssl_version = bcb2d5a58ff3c3c6098eedd8bc77895ad27fed0e
+openssl_version = 9dd243646cd11180625433c748e914768d9863f4
 openssl_url = $(frida_base_url)/openssl.git
 openssl_recipe = meson
 openssl_patches = \
@@ -529,6 +559,9 @@ openssl_patches = \
 openssl_options = \
 	-Dcli=disabled \
 	$(NULL)
+ifeq ($(host_variant), mingw32)
+openssl_options += -Dasm=disabled
+endif
 openssl_deps = \
 	$(NULL)
 openssl_deps_for_build = \

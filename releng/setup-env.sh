@@ -335,6 +335,34 @@ read_toolchain_variable ()
 mkdir -p "$FRIDA_BUILD"
 
 case $host_os in
+  windows)
+    case $host_cpu_family in
+      x86)
+        toolprefix="i686-w64-mingw32-"
+        ;;
+      *)
+        toolprefix="$host_cpu_family-w64-mingw32-"
+        ;;
+    esac
+
+    read_toolchain_variable cc CC ${toolprefix}gcc
+    read_toolchain_variable cxx CXX ${toolprefix}g++
+
+    read_toolchain_variable ar AR ${toolprefix}ar
+    read_toolchain_variable nm NM ${toolprefix}nm
+    read_toolchain_variable ranlib RANLIB ${toolprefix}ranlib
+    read_toolchain_variable strip STRIP ${toolprefix}strip
+    strip+=("--strip-all")
+
+    read_toolchain_variable readelf READELF ${toolprefix}readelf
+    read_toolchain_variable objcopy OBJCOPY ${toolprefix}objcopy
+
+    c_like_flags+=("-DWINVER=0x0501" "-D_WIN32_WINNT=0x0501" "-ffunction-sections" "-fdata-sections")
+    linker_flags+=("-lssp" "-static-libgcc" "-Wl,--gc-sections")
+
+    cxx_link_flags+=("-static-libstdc++")
+
+    ;;
   linux)
     if [ -n "$host_variant" ]; then
       frida_libc=$host_variant
@@ -621,6 +649,12 @@ case $host_os in
       # Suppress linker warning about x86 being a deprecated architecture.
       linker_flags+=("-Wl,-w")
     fi
+    bindir=$(dirname "$($xcrun --sdk $apple_sdk -f clang)")
+    if [ -f "$bindir/ld-classic" ]; then
+      # New linker links with libresolv even if we're not using any symbols from it,
+      # at least as of Xcode 15.0 beta 7.
+      linker_flags+=("-Wl,-ld_classic")
+    fi
 
     if [ $have_static_libcxx = yes ] && [ $enable_asan = no ]; then
       cxx_like_flags+=("-nostdinc++" "-isystem$FRIDA_SDKROOT/include/c++")
@@ -836,7 +870,7 @@ if [ -n "$FRIDA_EXTRA_LDFLAGS" ]; then
 fi
 
 vala_api_version=$(ls -1 "$FRIDA_TOOLROOT/share" | grep "vala-" | cut -f2 -d"-")
-valac=("$FRIDA_TOOLROOT/bin/valac-$vala_api_version" "--target-glib=2.56")
+valac=("$FRIDA_TOOLROOT/bin/valac-$vala_api_version")
 valac+=("--vapidir=$FRIDA_PREFIX/share/vala/vapi")
 if [ "$FRIDA_ENV_SDK" != 'none' ]; then
   valac+=("--vapidir=$FRIDA_SDKROOT/share/vala/vapi")
