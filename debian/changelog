@@ -11,6 +11,9 @@ frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
      - Add dh_auto_clean override, cleaning build/; letting `make clean`
        run would trigger issues otherwise.
      - Additionally clean the deps/ directory, where SDKs are downloaded.
+     - Also run `git clean -xdf` in each submodule: __pycache__/
+       directories appear in various places, but we also have some other
+       things, like subprojects/frida-gum inside subprojects/frida-core.
   * Add patches:
      - fix-python-includes.diff to make sure both pyconfig.h and Python.h
        are found.
