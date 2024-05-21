@@ -20,9 +20,6 @@ export PYBUILD_NAME=frida
 override_dh_auto_test:
 	@echo "Skipping test suite for the time being."
 
-override_dh_python3:
-	dh_python3 --no-ext-rename
-
 override_dh_auto_clean:
 	rm -rf build/
 

@@ -16,6 +16,7 @@ frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
        are found.
      - adjust-default-prefix.diff to use /usr instead of /usr/local.
   * Disable test suite for the time being.
+  * Delete dh_python3 override, no longer needed.
 
  -- Cyril Brulebois <cyril@debamax.com>  Tue, 21 May 2024 23:56:45 +0200
 
