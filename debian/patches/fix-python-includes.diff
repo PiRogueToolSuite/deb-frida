@@ -1,0 +1,14 @@
+--- a/subprojects/frida-python/meson.build
++++ b/subprojects/frida-python/meson.build
+@@ -9,7 +9,10 @@ python = import('python').find_installat
+ 
+ cc = meson.get_compiler('c')
+ 
+-frida_component_cflags = []
++# Required for pyconfig.h and Python.h:
++frida_component_cflags = [
++  '-I/usr/include/python3.11'
++]
+ ndebug = get_option('b_ndebug')
+ if ndebug == 'true' or (ndebug == 'if-release' and not get_option('debug'))
+   frida_component_cflags += [

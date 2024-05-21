@@ -11,6 +11,9 @@ frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
      - Add dh_auto_clean override, cleaning build/; letting `make clean`
        run would trigger issues otherwise.
      - Additionally clean the deps/ directory, where SDKs are downloaded.
+  * Add patches:
+     - fix-python-includes.diff to make sure both pyconfig.h and Python.h
+       are found.
 
  -- Cyril Brulebois <cyril@debamax.com>  Tue, 21 May 2024 23:56:45 +0200
 
