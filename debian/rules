@@ -1,18 +1,7 @@
 #! /usr/bin/make -f
 
-DEB_HOST_MULTIARCH := $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
-
-# arm64 and armhf require a crossbuild (and names match between Debian
-# and the upstream build system); amd64 and i386 require an explicit
-# native build (and names differ):
-FRIDA_ARCH := $(shell dpkg --print-architecture | sed 's/amd64/x86_64-thin/;s/i386/x86-thin/')
-PYTHON     := python-linux-$(FRIDA_ARCH)
-TOOLS      := tools-linux-$(FRIDA_ARCH)
-DIR        := build/frida_thin-linux-$(subst -thin,,$(FRIDA_ARCH))
-
 export HOME := $(CURDIR)/.fakehome
 
-export PYBUILD_NAME=frida
 %:
 	dh $@ --with quilt,python3 --buildsystem=makefile
 
