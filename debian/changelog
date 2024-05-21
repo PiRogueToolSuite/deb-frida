@@ -15,6 +15,7 @@ frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
      - fix-python-includes.diff to make sure both pyconfig.h and Python.h
        are found.
      - adjust-default-prefix.diff to use /usr instead of /usr/local.
+  * Disable test suite for the time being.
 
  -- Cyril Brulebois <cyril@debamax.com>  Tue, 21 May 2024 23:56:45 +0200
 

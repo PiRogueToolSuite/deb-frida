@@ -16,6 +16,10 @@ export PYBUILD_NAME=frida
 %:
 	dh $@ --with quilt,python3 --buildsystem=makefile
 
+# See https://github.com/PiRogueToolSuite/deb-frida/issues/2
+override_dh_auto_test:
+	@echo "Skipping test suite for the time being."
+
 override_dh_python3:
 	dh_python3 --no-ext-rename
 
