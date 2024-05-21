@@ -1,6 +1,8 @@
 frida (16.2.5~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Delete patch:
+     - stop-looking-at-main.diff (no longer needed).
 
  -- Cyril Brulebois <cyril@debamax.com>  Tue, 21 May 2024 23:56:45 +0200
 
