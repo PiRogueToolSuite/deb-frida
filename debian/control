@@ -8,7 +8,6 @@ Build-Depends:
  dh-python,
  python3-all-dev,
  python3-setuptools,
- curl,
  git,
  npm,
 Standards-Version: 4.2.0
