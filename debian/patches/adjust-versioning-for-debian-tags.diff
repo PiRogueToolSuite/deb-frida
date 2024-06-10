@@ -20,7 +20,7 @@ before parsing version information.
                                       capture_output=True,
                                       encoding="utf-8").stdout
  
-+        description = re.sub(r'^debian/', '', description)
++        description = re.sub(r'^(auto/|)debian/', '', description)
 +        description = re.sub(r'_pirogue\d+', '', description)
 +
          tokens = description.strip().replace("-", ".").split(".")
