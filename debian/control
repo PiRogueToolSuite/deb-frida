@@ -7,6 +7,7 @@ Build-Depends:
  quilt,
  dh-python,
  python3-all-dev,
+ python3-setuptools,
  curl,
  git,
  npm,
