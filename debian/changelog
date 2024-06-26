@@ -1,4 +1,4 @@
-frida (16.3.0~pirogue1) UNRELEASED; urgency=medium
+frida (16.3.0~pirogue1) bookworm; urgency=medium
 
   * Strip auto/ prefix for debian/* tags.
   * Fix missing build-dep: python3-setuptools.
