@@ -12,6 +12,8 @@ override_dh_auto_install:
 	mv debian/frida/$(CURDIR)/subprojects/frida-core/vapi/frida-core-1.0.vapi debian/frida/usr/share/vala/vapi/
 	# Clean empty, intermediary directories (stripping the leading slash):
 	cd debian/frida && rmdir -p $(CURDIR:/%=%)/subprojects/frida-core/vapi/
+	# Adjust pkg-config file accordingly:
+	sed 's,$(CURDIR)/subprojects/frida-core/vapi,/usr/share/vala/vapi,' -i debian/frida/usr/lib/$(shell dpkg-architecture -qDEB_HOST_MULTIARCH)/pkgconfig/frida-core-1.0.pc
 
 # See https://github.com/PiRogueToolSuite/deb-frida/issues/2
 override_dh_auto_test:
