@@ -14,4 +14,4 @@ override_dh_auto_clean:
 
 override_dh_clean:
 	dh_clean deps/ $(HOME)/
-	git submodule foreach git clean -xdf
+	git submodule foreach --recursive git clean -xdf
