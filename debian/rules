@@ -5,6 +5,14 @@ export HOME := $(CURDIR)/.fakehome
 %:
 	dh $@ --with quilt,python3 --buildsystem=makefile
 
+override_dh_auto_install:
+	dh_auto_install
+	# Move files around:
+	mv debian/frida/$(CURDIR)/subprojects/frida-core/vapi/frida-core-1.0.deps debian/frida/usr/share/vala/vapi/
+	mv debian/frida/$(CURDIR)/subprojects/frida-core/vapi/frida-core-1.0.vapi debian/frida/usr/share/vala/vapi/
+	# Clean empty, intermediary directories (stripping the leading slash):
+	cd debian/frida && rmdir -p $(CURDIR:/%=%)/subprojects/frida-core/vapi/
+
 # See https://github.com/PiRogueToolSuite/deb-frida/issues/2
 override_dh_auto_test:
 	@echo "Skipping test suite for the time being."
