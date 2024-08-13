@@ -1,0 +1,38 @@
+From: Cyril Brulebois <cyril@debamax.com>
+Subject: Disable source maps.
+Date: Tue, 13 Aug 2024 21:06:51 +0200
+
+Without the first hunk, the path to the git checkout leaks in various JS
+files:
+ - /usr/lib/python3/dist-packages/frida_tools/fs_agent.js
+ - /usr/lib/python3/dist-packages/frida_tools/itracer_agent.js
+
+Without the second hunk, the path to the git checkout leaks in the static
+library and in the Python module:
+ - /usr/lib/x86_64-linux-gnu/libfrida-core-1.0.a
+ - /usr/lib/python3/dist-packages/frida/_frida.abi3.so
+
+Link: https://github.com/PiRogueToolSuite/deb-frida/issues/3
+
+--- a/subprojects/frida-tools/agents/build.py
++++ b/subprojects/frida-tools/agents/build.py
+@@ -38,7 +38,7 @@ def build(npm: Path, inputs: list[Path],
+     subprocess.run([npm, "install"], capture_output=True, cwd=priv_dir, check=True)
+ 
+     frida_compile = priv_dir / "node_modules" / ".bin" / f"frida-compile{script_suffix()}"
+-    subprocess.run([frida_compile, entrypoint, "-c", "-o", output_js], cwd=priv_dir, check=True)
++    subprocess.run([frida_compile, entrypoint, "-S", "-c", "-o", output_js], cwd=priv_dir, check=True)
+ 
+ 
+ def script_suffix() -> str:
+--- a/subprojects/frida-core/src/barebone/package.json
++++ b/subprojects/frida-core/src/barebone/package.json
+@@ -4,7 +4,7 @@
+   "description": "Script runtime used by Frida's Barebone backend",
+   "scripts": {
+     "prepare": "npm run build",
+-    "build": "frida-compile script-runtime/entrypoint.ts -o script-runtime.js -c"
++    "build": "frida-compile -S script-runtime/entrypoint.ts -o script-runtime.js -c"
+   },
+   "devDependencies": {
+     "@types/frida-gum": "^18.3.2",
