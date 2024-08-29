@@ -1,3 +1,4 @@
 adjust-versioning-for-debian-tags.diff
 fix-python-includes.diff
 adjust-default-prefix.diff
+disable-source-maps.diff
