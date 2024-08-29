@@ -5,8 +5,9 @@ frida (16.4.9~pirogue1) UNRELEASED; urgency=medium
     (JS, static library, Python module) by disabling source maps:
      - disable-source-maps.diff
   * New upstream release.
+  * New upstream release.
 
- -- Cyril Brulebois <cyril@debamax.com>  Thu, 29 Aug 2024 12:45:33 +0000
+ -- Cyril Brulebois <cyril@debamax.com>  Thu, 29 Aug 2024 12:49:05 +0000
 
 frida (16.4.8~pirogue1) bookworm; urgency=medium
 
