@@ -1,4 +1,4 @@
-frida (16.4.9~pirogue1) UNRELEASED; urgency=medium
+frida (16.4.9~pirogue1) bookworm; urgency=medium
 
   * Set debian-branch = debian/bookworm in debian/gbp.conf (`gbp tag`).
   * Avoid leaking the path to the git checkout in various generated files
@@ -7,7 +7,7 @@ frida (16.4.9~pirogue1) UNRELEASED; urgency=medium
   * New upstream release.
   * New upstream release.
 
- -- Cyril Brulebois <cyril@debamax.com>  Thu, 29 Aug 2024 12:49:05 +0000
+ -- Cyril Brulebois <cyril@debamax.com>  Thu, 29 Aug 2024 12:49:06 +0000
 
 frida (16.4.8~pirogue1) bookworm; urgency=medium
 
