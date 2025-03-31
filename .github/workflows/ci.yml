@@ -105,12 +105,13 @@ jobs:
           name: "Frida ${{ env.FRIDA_VERSION }}"
           body: "See https://frida.re/news/ for details."
           files: build/release-assets/*
-      - name: Publish Python bindings to PyPI
-        uses: ./.github/actions/publish-python-bindings
+      - name: Prepare Python packages
+        uses: ./.github/actions/prepare-python-packages
+      - name: Publish Python bindings to pypi.org
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          site: production
-          pypi-token: ${{ secrets.PYPI_API_TOKEN }}
-          testpypi-token: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages-dir: build/python-packages/
       - name: Publish .deb packages
         uses: ./.github/actions/publish-debs
         with:
@@ -176,12 +177,14 @@ jobs:
         uses: ./.github/actions/package-ios-assets
       - name: Package tvOS assets
         uses: ./.github/actions/package-tvos-assets
+      - name: Prepare Python packages
+        uses: ./.github/actions/prepare-python-packages
       - name: Publish Python bindings to TestPyPI
-        uses: ./.github/actions/publish-python-bindings
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          site: development
-          pypi-token: ${{ secrets.PYPI_API_TOKEN }}
-          testpypi-token: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          packages-dir: build/python-packages/
+          repository-url: https://test.pypi.org/legacy/
       - name: Publish .deb packages
         uses: ./.github/actions/publish-debs
         with:
@@ -808,7 +811,7 @@ jobs:
           architecture: ${{ matrix.arch == 'x86_64' && 'x64' || matrix.arch }}
       - name: Install Qt
         if: ${{ contains(matrix.arch, '64') }}
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.7.0'
           cache: true
@@ -979,7 +982,7 @@ jobs:
           cloudflare-token: ${{ secrets.CF_TOKEN }}
       - name: Install Qt
         if: matrix.arch != 'arm64e'
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.7.0'
           cache: true
@@ -1134,14 +1137,15 @@ jobs:
       - name: Configure qemu-user
         if: ${{ !startsWith(matrix.arch, 'x86') }}
         run: echo "FRIDA_QEMU_SYSROOT=/opt/x-tools/$XTOOLS_HOST/$XTOOLS_HOST/sysroot" >> $GITHUB_ENV
-      - name: Install packages needed for installing Qt
+      - name: Prepare environment for installing Qt
         if: matrix.arch == 'x86_64'
         run: |
           apt-get update
           apt-get install -y sudo
+          echo "PIP_BREAK_SYSTEM_PACKAGES=1" >> $GITHUB_ENV
       - name: Install Qt
         if: matrix.arch == 'x86_64'
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.7.0'
           cache: true
