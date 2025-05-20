@@ -1,6 +1,10 @@
 frida (17.0.2~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Update patch, dropping the first half (integrated upstream in commit
+    3f6365f1a9bf723d9a7f4cffbe66d84ec92b24d5), and unfuzzying the second
+    half:
+     - disable-source-maps.diff
 
  -- Cyril Brulebois <cyril@debamax.com>  Wed, 21 May 2025 00:15:18 +0200
 
