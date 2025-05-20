@@ -1,4 +1,4 @@
-frida (17.0.2~pirogue1) UNRELEASED; urgency=medium
+frida (17.0.2~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Update patch, dropping the first half (integrated upstream in commit
@@ -6,7 +6,7 @@ frida (17.0.2~pirogue1) UNRELEASED; urgency=medium
     half:
      - disable-source-maps.diff
 
- -- Cyril Brulebois <cyril@debamax.com>  Wed, 21 May 2025 00:15:18 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Wed, 21 May 2025 01:22:04 +0200
 
 frida (17.0.1~pirogue1) bookworm; urgency=medium
 
