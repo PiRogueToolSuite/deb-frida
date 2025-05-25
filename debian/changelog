@@ -1,6 +1,8 @@
 frida (17.0.5~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Refresh patch due to updated context:
+     - disable-source-maps.diff
 
  -- Cyril Brulebois <cyril@debamax.com>  Sun, 25 May 2025 00:15:11 +0200
 

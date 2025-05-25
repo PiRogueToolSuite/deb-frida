@@ -13,8 +13,8 @@ Link: https://github.com/PiRogueToolSuite/deb-frida/issues/3
 +++ b/subprojects/frida-core/src/barebone/package.json
 @@ -4,7 +4,7 @@
    "description": "Script runtime used by Frida's Barebone backend",
+   "type": "module",
    "scripts": {
-     "prepare": "npm run build",
 -    "build": "frida-compile script-runtime/entrypoint.ts -o script-runtime.js -c"
 +    "build": "frida-compile -S script-runtime/entrypoint.ts -o script-runtime.js -c"
    },
