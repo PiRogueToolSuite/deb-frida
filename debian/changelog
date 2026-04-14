@@ -1,6 +1,9 @@
 frida (17.1.1~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Delete patch that no longer applies and that might no longer be
+    needed (esbuild seems to provide source maps as an option):
+     - disable-source-maps.diff
 
  -- Cyril Brulebois <cyril@debamax.com>  Sat, 07 Jun 2025 06:56:56 +0200
 
