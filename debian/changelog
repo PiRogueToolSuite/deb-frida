@@ -1,10 +1,10 @@
-frida (17.4.2~pirogue1) UNRELEASED; urgency=medium
+frida (17.4.2~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Delete patch, no longer needed:
      - fix-python-detection.diff
 
- -- Cyril Brulebois <cyril@debamax.com>  Wed, 15 Apr 2026 12:54:10 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Wed, 15 Apr 2026 14:09:33 +0200
 
 frida (17.4.1~pirogue1) bookworm; urgency=medium
 
