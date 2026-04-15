@@ -1,6 +1,8 @@
 frida (17.4.2~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Delete patch, no longer needed:
+     - fix-python-detection.diff
 
  -- Cyril Brulebois <cyril@debamax.com>  Wed, 15 Apr 2026 12:54:10 +0200
 
