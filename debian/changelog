@@ -1,10 +1,10 @@
-frida (17.5.2~pirogue1) UNRELEASED; urgency=medium
+frida (17.5.2~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Refresh patch:
      - adjust-versioning-for-debian-tags.diff
 
- -- Cyril Brulebois <cyril@debamax.com>  Wed, 15 Apr 2026 18:25:50 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Wed, 15 Apr 2026 20:27:16 +0200
 
 frida (17.5.1~pirogue1) bookworm; urgency=medium
 
