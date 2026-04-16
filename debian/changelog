@@ -1,3 +1,9 @@
+frida (17.9.0~pirogue1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+
+ -- Cyril Brulebois <cyril@debamax.com>  Thu, 16 Apr 2026 06:05:42 +0200
+
 frida (17.8.3~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
