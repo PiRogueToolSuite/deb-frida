@@ -2,6 +2,7 @@ frida (17.9.2~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Stop moving vala files around manually, addressed upstream.
+  * Stop hotpatching vala files accordingly, addressed upstream.
 
  -- Cyril Brulebois <cyril@debamax.com>  Tue, 28 Apr 2026 18:15:24 +0200
 

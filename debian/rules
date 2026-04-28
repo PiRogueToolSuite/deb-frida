@@ -7,8 +7,6 @@ export HOME := $(CURDIR)/.fakehome
 
 override_dh_auto_install:
 	dh_auto_install
-	# Adjust pkg-config file accordingly:
-	sed 's,$(CURDIR)/subprojects/frida-core/vapi,/usr/share/vala/vapi,' -i debian/frida/usr/lib/$(shell dpkg-architecture -qDEB_HOST_MULTIARCH)/pkgconfig/frida-core-1.0.pc
 
 # See https://github.com/PiRogueToolSuite/deb-frida/issues/2
 override_dh_auto_test:
