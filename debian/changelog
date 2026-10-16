@@ -1,9 +1,9 @@
-frida (17.17.0~pirogue2) UNRELEASED; urgency=medium
+frida (17.17.0~pirogue2) bookworm; urgency=medium
 
   * New patch to fix broken imports due to missing files:
      - fix-missing-source-files.diff
 
- -- Cyril Brulebois <cyril@debamax.com>  Fri, 16 Oct 2026 15:47:05 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Sat, 17 Oct 2026 00:20:22 +0200
 
 frida (17.17.0~pirogue1) bookworm; urgency=medium
 
