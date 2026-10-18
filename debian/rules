@@ -5,8 +5,10 @@ export HOME := $(CURDIR)/.fakehome
 %:
 	dh $@ --with quilt,python3 --buildsystem=makefile
 
+# See https://github.com/PiRogueToolSuite/deb-frido/issues/8
 override_dh_auto_install:
 	dh_auto_install
+	rm -rf debian/frida/usr/share/gir-1.0/
 
 # See https://github.com/PiRogueToolSuite/deb-frida/issues/2
 override_dh_auto_test:

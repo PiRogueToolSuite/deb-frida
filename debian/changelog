@@ -1,3 +1,13 @@
+frida (17.17.0~pirogue3) UNRELEASED; urgency=medium
+
+  * Stop shipping introspection files to avoid inconsistencies and
+    possible conflicts with other packages shipping the same files (see
+    https://github.com/PiRogueToolSuite/deb-frido/issues/8 for details).
+    Runtime tests seem to confirm those files are not needed for proper
+    operation.
+
+ -- Cyril Brulebois <cyril@debamax.com>  Sun, 18 Oct 2026 21:33:27 +0200
+
 frida (17.17.0~pirogue2) bookworm; urgency=medium
 
   * New patch to fix broken imports due to missing files:
