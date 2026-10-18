@@ -1,4 +1,4 @@
-frida (17.17.0~pirogue3) UNRELEASED; urgency=medium
+frida (17.17.0~pirogue3) bookworm; urgency=medium
 
   * Stop shipping introspection files to avoid inconsistencies and
     possible conflicts with other packages shipping the same files (see
@@ -6,7 +6,7 @@ frida (17.17.0~pirogue3) UNRELEASED; urgency=medium
     Runtime tests seem to confirm those files are not needed for proper
     operation.
 
- -- Cyril Brulebois <cyril@debamax.com>  Sun, 18 Oct 2026 21:33:27 +0200
+ -- Cyril Brulebois <cyril@debamax.com>  Sun, 18 Oct 2026 21:34:31 +0200
 
 frida (17.17.0~pirogue2) bookworm; urgency=medium
 
