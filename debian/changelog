@@ -1,3 +1,13 @@
+frida (17.24.2~pirogue2) UNRELEASED; urgency=medium
+
+  * Stop shipping introspection files to avoid inconsistencies and
+    possible conflicts with other packages shipping the same files (see
+    https://github.com/PiRogueToolSuite/deb-frido/issues/8 for details).
+    Runtime tests seem to confirm those files are not needed for proper
+    operation.
+
+ -- Cyril Brulebois <cyril@debamax.com>  Sun, 18 Oct 2026 19:56:35 +0200
+
 frida (17.24.2~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
