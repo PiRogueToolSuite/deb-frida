@@ -1,3 +1,9 @@
+frida (17.24.3~pirogue1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+
+ -- Cyril Brulebois <cyril@debamax.com>  Mon, 19 Oct 2026 20:04:32 +0200
+
 frida (17.24.2~pirogue2) bookworm; urgency=medium
 
   * Stop shipping introspection files to avoid inconsistencies and
