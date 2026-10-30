@@ -3,6 +3,7 @@
 import argparse
 from configparser import ConfigParser
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 from typing import Iterator
@@ -15,6 +16,11 @@ if not (RELENG_DIR / "meson" / "meson.py").exists():
 sys.path.insert(0, str(ROOT_DIR))
 from releng.deps import load_dependency_parameters, query_repo_commits
 
+
+LIBRARY_NAMES = [
+    "efni",
+    "idun",
+]
 
 PROJECT_NAMES_IN_RELEASE_CYCLE = [
     "frida-gum",
@@ -60,7 +66,8 @@ def main(argv: list[str]):
 
 
 def bump():
-    projects = list(enumerate_projects_in_release_cycle())
+    projects = [(name, ROOT_DIR / "subprojects" / name) for name in LIBRARY_NAMES]
+    projects += enumerate_projects_in_release_cycle()
     projects.append(("frida-tools", ROOT_DIR / "subprojects" / "frida-tools"))
 
     assert_no_local_changes(ROOT_DIR)
@@ -98,6 +105,8 @@ def bump_subproject(name: str, repo: Path):
         print("\treleng: bumped")
     else:
         print("\treleng: up-to-date")
+
+    sync_wrappers(repo)
 
     bumped_files: list[Path] = []
     dep_packages = load_dependency_parameters().packages
@@ -143,6 +152,18 @@ def bump_releng(releng: Path):
         run(["git", "submodule", "update", "--init", "--depth", "1", "--recursive", "releng"], cwd=releng.parent)
     run(["git", "checkout", "main"], cwd=releng)
     run(["git", "pull"], cwd=releng)
+
+
+def sync_wrappers(repo: Path):
+    wrappers = sorted((repo / "releng" / "meson-scripts").iterdir())
+    for wrapper in wrappers:
+        shutil.copy2(wrapper, repo / wrapper.name)
+    run(["git", "add", *[wrapper.name for wrapper in wrappers]], cwd=repo)
+    if run(["git", "diff", "--cached", "--name-only"], cwd=repo).stdout.strip():
+        run(["git", "commit", "-m", "build: Sync wrappers with releng"], cwd=repo)
+        print("\twrappers: synced")
+    else:
+        print("\twrappers: up-to-date")
 
 
 def bump_submodules() -> list[str]:
