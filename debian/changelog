@@ -1,6 +1,7 @@
 frida (17.25.0~pirogue1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Add lintian overrides regarding embedded zlib.
 
  -- Cyril Brulebois <cyril@debamax.com>  Fri, 30 Oct 2026 18:15:36 +0100
 

@@ -1,0 +1,2 @@
+frida: embedded-library zlib [usr/bin/idund]
+frida: embedded-library zlib [usr/lib/python3/dist-packages/frida/_frida.abi3.so]
