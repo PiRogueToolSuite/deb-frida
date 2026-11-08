@@ -1,10 +1,10 @@
-frida (17.26.0~pirogue1) UNRELEASED; urgency=medium
+frida (17.26.0~pirogue1) bookworm; urgency=medium
 
   * New upstream release.
   * Delete patch fixing broken imports due to missing files, since
     frida-tools#207 was merged upstream and published in this release.
 
- -- Cyril Brulebois <cyril@debamax.com>  Sun, 08 Nov 2026 02:21:44 +0100
+ -- Cyril Brulebois <cyril@debamax.com>  Sun, 08 Nov 2026 02:28:18 +0100
 
 frida (17.25.2~pirogue1) bookworm; urgency=medium
 
